@@ -8,16 +8,15 @@
 
 def selects_the_titles_of_all_projects_and_their_pledge_amounts_alphabetized_by_name
 "SELECT projects.title, SUM(pledges.amount)
-FROM pledges
-INNER JOIN projects
+FROM pledges INNER JOIN projects
 ON pledges.project_id = projects.id
 GROUP BY projects.title
 ORDER BY projects.title"
 end
 
 def selects_the_user_name_age_and_pledge_amount_for_all_pledges_alphabetized_by_name
-"SELECT users.name, users.age, SUM(pledges.amount) FROM pledges
-INNER JOIN users
+"SELECT users.name, users.age, SUM(pledges.amount)
+FROM pledges INNER JOIN users
 ON pledges.user_id = users.id
 GROUP BY users.name
 ORDER BY users.name"
@@ -32,7 +31,8 @@ end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_amount_and_users_name
 "SELECT users.name, SUM(pledges.amount)
-FROM pledges "
+FROM pledges INNER JOIN users
+ON pledges.user_id = users.id"
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
